@@ -5,7 +5,7 @@ const fetcher = async (q, page) => {
   const baseUrl = 'https://api.unsplash.com/search/photos/?query=';
   const url = `${baseUrl}${q}&page=${page}&client_id=${process.env.ACCESS_KEY}`
   const data = await axios.get(url);
-  console.log(data);
+  console.log(data.status);
   return data.data;
 };
 
