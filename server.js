@@ -13,6 +13,12 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get('/', (req, res, next) => {
+  const {query, page} = req.params;
+  res.send('Hei du');
+  res.end();
+})
+
 app.get('/api/:query/:page', async (req, res, next) => {
   const {query, page} = req.params;
   res.send(await fetcher(query, page))
