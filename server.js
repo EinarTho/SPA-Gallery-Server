@@ -22,10 +22,21 @@ app.get('/', (req, res, next) => {
 app.get('/api/:query/:page', async (req, res, next) => {
   const {query, page} = req.params;
   try {
-    res.send(await fetcher(query, page));
+    const data = await fetcher(query, page)
+    res.send(data);
   }  catch {
     res.send('there was an error');
   }
+  
+  res.end();
+})
+
+app.get('/promise/:query/:page', (req, res, next) => {
+  const {query, page} = req.params;
+  fetcher(query, page)
+    .then(data => {
+      res.send(data)
+    });
   
   res.end();
 })
