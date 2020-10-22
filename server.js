@@ -22,10 +22,13 @@ app.get('/', (req, res, next) => {
 app.get('/api/:query/:page', async (req, res, next) => {
   const {query, page} = req.params;
   try {
+    console.log('just before fetcher')
     const data = await fetcher(query, page)
+    console.log('Just before send', data);
     res.send(data);
-  }  catch {
-    res.send('there was an error');
+  }  catch (e) {
+    console.log(e.message);
+    res.send("there was an error");
   }
   
   res.end();
@@ -38,7 +41,6 @@ app.get('/promise/:query/:page', (req, res, next) => {
      res.send(data);
      res.end();
     });
-  
 })
 
 app.listen(port, () => {
