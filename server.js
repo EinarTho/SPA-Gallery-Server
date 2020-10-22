@@ -35,10 +35,10 @@ app.get('/promise/:query/:page', (req, res, next) => {
   const {query, page} = req.params;
   fetcher(query, page)
     .then(data => {
-      res.send(data)
+     res.send(data);
+     res.end();
     });
   
-  res.end();
 })
 
 app.listen(port, () => {
